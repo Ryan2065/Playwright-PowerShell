@@ -49,6 +49,4 @@ Foreach($CommandScript in $CommandScripts){
     . $CommandScript.FullName
 }
 
-Set-Alias -Name 'await' -Value 'Wait-PlaywrightTask'
-
-Export-ModuleMember -Function $CommandScripts.BaseName -Alias 'await'
+Export-ModuleMember -Function $CommandScripts.BaseName

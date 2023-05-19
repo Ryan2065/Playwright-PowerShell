@@ -1,17 +1,11 @@
 Import-Module "$PSScriptRoot\bin\Playwright.win" -Force
 Import-Module "$PSScriptRoot/Playwright" -Force
+$ErrorActionPreference = 'Stop'
+$browser = Start-PlaywrightBrowser -Browser 'Chromium' -BrowserChannel 'chrome' -ShowBrowser
 
 
+$context = Wait-PlaywrightTask ( $browser.NewContextAsync() )
 
-    $playwright = await ([Microsoft.Playwright.Playwright]::CreateAsync())
-    $BrowserLaunchOptions = New-Object -TypeName 'Microsoft.Playwright.BrowserTypeLaunchOptions'
+$page = Wait-PlaywrightTask ( $context.NewPageAsync() )
 
-    $BrowserLaunchOptions.Headless = $false
-    $BrowserLaunchOptions.Channel = 'chrome'
-    $browser = await ($playwright.Chromium.LaunchAsync($BrowserLaunchOptions))
-
-    $context = await ( $browser.NewContextAsync() )
-
-    $page = await ( $context.NewPageAsync() )
-
-    $test = await ( $page.PauseAsync() )
+$test = Wait-PlaywrightTask ( $page.PauseAsync() )

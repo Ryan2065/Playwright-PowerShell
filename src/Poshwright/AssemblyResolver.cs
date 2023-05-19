@@ -5,7 +5,7 @@ using System.Reflection;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace PlaywrightDependencies
+namespace Poshwright
 {
     public static class AssemblyResolver
     {
@@ -18,7 +18,7 @@ namespace PlaywrightDependencies
         {
             if(string.IsNullOrEmpty(pathToCheck))
             {
-                pathToCheck = Path.GetDirectoryName(typeof(PlaywrightDependencies.AssemblyResolver).Assembly.Location);
+                pathToCheck = Path.GetDirectoryName(typeof(AssemblyResolver).Assembly.Location);
             }
             return pathToCheck;
         }
