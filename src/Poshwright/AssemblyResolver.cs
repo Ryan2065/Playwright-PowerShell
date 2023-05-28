@@ -12,6 +12,7 @@ namespace Poshwright
         public static void EnableAssemblyResolver()
         {
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(PoshResolveEventHandler);
+            
         }
         private static string pathToCheck = "";
         private static string GetPathToCheck()

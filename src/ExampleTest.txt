@@ -1,0 +1,25 @@
+using Microsoft.Playwright;
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    public static async Task Main()
+    {
+        using var playwright = await Playwright.CreateAsync();
+        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+        {
+            Headless = false,
+        });
+        var context = await browser.NewContextAsync();
+
+        await page.GotoAsync("https://www.google.com/");
+
+        await page.GetByRole(AriaRole.Combobox, new() { Name = "Search" }).ClickAsync();
+
+        await page.GetByRole(AriaRole.Combobox, new() { Name = "Search" }).FillAsync("This is a test");
+
+        await page.GetByRole(AriaRole.Combobox, new() { Name = "Search" }).PressAsync("Enter");
+
+    }
+}
